@@ -217,6 +217,6 @@ install-deploy:
 	@${pip} install ansible[azure]
 
 # target: test-docker                         - Run tests and display code coverage
-.PHONY: test
+.PHONY: test-docker
 test-docker:
 	docker-compose up test

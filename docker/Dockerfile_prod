@@ -17,10 +17,8 @@ RUN apk --no-cache add --virtual build-dependencies libffi-dev openssl-dev py-pi
   && pip install --no-cache-dir -r requirements.txt \
   && apk del build-dependencies
 
-
 RUN chmod +x boot.sh \
- && chown -R microblog:microblog ./
-
+    && chown -R microblog:microblog ./
 USER microblog
 
 EXPOSE 5000

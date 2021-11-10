@@ -1,3 +1,3 @@
 #!/bin/sh
-. venv/bin/activate
+source venv/bin/activate
 exec make test
