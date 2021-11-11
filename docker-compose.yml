@@ -10,7 +10,7 @@ services:
       - MYSQL_USER=microblog
       - MYSQL_PASSWORD=password
   prod:
-    image: sandrajinnevall/microblog:latest1
+    image: sandrajinnevall/microblog:latest2
     links:
       - prod_mysql
     environment:
