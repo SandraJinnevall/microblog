@@ -1,7 +1,7 @@
 version: '3'
 services:
-    mysql:  
-        image: mysql/mysql-server:5.7
+    dbserver:  
+        image: mysql:5.7
         environment:
             - MYSQL_DATABASE=microblog
             - MYSQL_USER=microblog
@@ -17,11 +17,11 @@ services:
         environment:
             - FLASK_APP=microblog.py
             - SECRET_KEY=my-secret-key
-            - DATABASE_URL=mysql+pymysql://microblog:password@mysql-server/microblog 
+            - DATABASE_URL=mysql+pymysql://microblog:password@dbserver:3306/microblog 
         ports:
-            - '8000:5000'
+            - 8000:5000
         links:
-            - mysql:mysql-server
+            - dbserver
         restart: always
     test:
         volumes:
