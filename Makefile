@@ -210,13 +210,18 @@ install-test:
 
 
 
-# target: install-deploy                 - Install all Python packages specified in requirements/{deploy.txt}
+# target: install-deploy                 - Install all Python packages specified in requirements/{deploy.txt} and ansible galaxy collections in ansible/requirements.yml
 .PHONY: install-deploy
 install-deploy:
 	${pip} install -r requirements/deploy.txt
+<<<<<<< HEAD
 	@${pip} install ansible[azure]
 
 # target: test-docker                         - Run tests and display code coverage
 .PHONY: test-docker
 test-docker:
 	docker-compose up test
+=======
+	cd ansible && ansible-galaxy install -r requirements.yml
+>>>>>>> ceaf4b8517595ec1b7f8f7adecfcabd9d8338285
+
