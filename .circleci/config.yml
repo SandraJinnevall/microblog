@@ -67,6 +67,7 @@ jobs:
       - run:
          name: Install dependencies
          command: |
+             pip3 install --upgrade setuptools
              pip3 install --upgrade pip
              pip3 install wheel
              make install-deploy
