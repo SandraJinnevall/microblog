@@ -65,7 +65,7 @@ jobs:
              python3 -m venv .venv
       - run: echo "source ~/project/.venv/bin/activate" >> $BASH_ENV 
       - run:
-         name: Install dependencies and deploy appServer
+         name: Install dependencies and run appServer
          command: |
             python3 -m venv venv
              . venv/bin/activate
