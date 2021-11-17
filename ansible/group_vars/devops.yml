@@ -1,0 +1,21 @@
+---
+root_password: $6$sN.jd1PEgwW8i8fG$A7OEbUcJislFU06qLpN.3r29YThheuc6etNsDaBAKMMbifDfUsyz98SH/KvcC2W1Vd48s/VkqCYwzNZ5f5aWy1
+
+server_user: deploy
+
+server_user_pass: $6$3qtca9Q3eO9PEj4M$krIyWOr.out1EGRzO2/trTWvih.NjyNRp22zRZSQayOASTUhcRDzY8MPX1fkf/QkSHb8nB/B9ACNs2Xn5JKtt0
+
+server_user_groups:
+    -    sudo
+
+pub_ssh_key_location:
+    -   /Users/sandrajinnevall/.ssh/azureci.pub
+
+
+### MYSQL
+docker_name: dev_mysql
+docker_image_name: mysql/mysql-server:5.7
+mysql_database_name: microblog
+mysql_user: microblog
+mysql_pass: password
+mysql_root_pass: password

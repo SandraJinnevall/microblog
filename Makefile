@@ -77,7 +77,7 @@ help:
 .PHONY: add-ssh
 add-ssh:
 	eval `ssh-agent -s`
-	ssh-add <path/too/ssh-key>
+	ssh-add /Users/sandrajinnevall/.ssh/azureci
 
 
 
@@ -214,14 +214,9 @@ install-test:
 .PHONY: install-deploy
 install-deploy:
 	${pip} install -r requirements/deploy.txt
-<<<<<<< HEAD
-	@${pip} install ansible[azure]
+	cd ansible && ansible-galaxy install -r requirements.yml
 
 # target: test-docker                         - Run tests and display code coverage
 .PHONY: test-docker
 test-docker:
 	docker-compose up test
-=======
-	cd ansible && ansible-galaxy install -r requirements.yml
->>>>>>> ceaf4b8517595ec1b7f8f7adecfcabd9d8338285
-

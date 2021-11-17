@@ -1,0 +1,54 @@
+---
+-   name: Check Nigix latetst version
+    apt: name=nginx state=latest
+
+-   name: Installing certbot
+    apt: name=python-certbot-apache state=latest
+
+-   name: Checking if certificate exist.
+    stat:
+        path: /etc/letsencrypt/live/saji19.me/cert.pem
+    register: letsencrypt_cert
+
+-   name: Stop nginx
+    service: 
+        name: nginx 
+        state: stopped
+
+-   name: Creating new cert if it doesnt exist
+    shell: "certbot certonly --standalone --noninteractive --expand --agree-tos --email saji19@student.bth.se -d saji19.me -d www.saji19.me"
+    when: not letsencrypt_cert.stat.exists
+
+-   name: Remove default confing, adding new later.
+    file:
+        state: absent
+        path: /etc/nginx/sites-enabled/default
+
+-   name: Copy nginx.conf to server
+    template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        owner: "{{ server_user }}"
+        group: "{{ server_user }}"
+        mode: '0644'
+
+-   name: Copy load-balancer to server
+    template:
+        src: templates/load-balancer.conf.j2
+        dest: /etc/nginx/sites-available/load-balancer.conf
+        owner: "{{ server_user }}"
+        group: "{{ server_user }}"
+        mode: '0644'
+
+-   name: Linking sites-available/load-balancer.conf to sites-enabled/load-balancer.conf
+    file:
+        src: /etc/nginx/sites-available/load-balancer.conf
+        dest: /etc/nginx/sites-enabled/load-balancer.conf
+        state: link
+        owner: "{{ server_user }}"
+        group: "{{ server_user }}"
+
+-   name: Start nginx
+    service: 
+        name: nginx 
+        state: started
