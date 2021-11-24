@@ -52,3 +52,16 @@
     service: 
         name: nginx 
         state: started
+
+
+# ###### PROMETHEUS EXPORTER
+
+# -   name: Run container nginx/nginx-prometheus-exporter:0.4.2
+#     command: docker run -d \
+#                 --restart always \
+#                 -p 9113:9113 \
+#                 nginx/nginx-prometheus-exporter:0.4.2 \
+#                 -nginx.scrape-uri=https://saji19.me/metrics \
+#                 -nginx.retries=10 \
+#                 -nginx.ssl-verify=false \
+#                 -web.telemetry-path=/prometheus

@@ -2,10 +2,11 @@
 - name: creating appserver container microblog
   docker_container:
     name: "microblog"
-    image: sandrajinnevall/microblog:latest2
+    image: sandrajinnevall/microblog:flask-exporter
     ports: 
       - 8000:5000
     restart_policy: always
     env:
-      DATABASE_URL: "mysql+pymysql://microblog:password@{{ groups['database'][0] }}/microblog"
+      DATABASE_URL: "mysql+pymysql://microblog:password@{{ groups['database'][0] }}:3306/microblog"
       SECRET_KEY: my-secret-key
+    recreate: yes
