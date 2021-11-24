@@ -1,16 +1,16 @@
 ---
-# ###### NODE-EXPORTER
-# -   name: Pull from dockerhub prom/node-exporter:v1.2.2
-#     command: docker pull prom/node-exporter:v1.2.2
+###### NODE-EXPORTER
+-   name: Pull from dockerhub prom/node-exporter:v1.2.2
+    command: docker pull prom/node-exporter:v1.2.2
 
 
-# -   name: Run container prom/node-exporter:v1.2.2
-#     command: docker run -d
-#         --net="host"
-#         --pid="host"
-#         -v "/:/host:ro,rslave"
-#         prom/node-exporter:v1.2.2
-#         --path.rootfs=/host
+-   name: Run container prom/node-exporter:v1.2.2
+    command: docker run -d
+        --net="host"
+        --pid="host"
+        -v "/:/host:ro,rslave"
+        prom/node-exporter:v1.2.2
+        --path.rootfs=/host
 
 ###### PROMETHEUS
 -   name: Template nginx config to server
@@ -32,25 +32,25 @@
         network_mode: host
         recreate: yes
 
-# ###### GRAFANA
-# -   name: Template nginx config to server
-#     template:
-#         src: grafana.ini.j2
-#         dest: /tmp/grafana.ini
-#         force: yes
+###### GRAFANA
+-   name: Template nginx config to server
+    template:
+        src: grafana.ini.j2
+        dest: /tmp/grafana.ini
+        force: yes
 
-# -   name: Pull from dockerhub grafana/grafana:8.2.4
-#     command: docker pull grafana/grafana:8.2.4
+-   name: Pull from dockerhub grafana/grafana:8.2.4
+    command: docker pull grafana/grafana:8.2.4
 
-# -   name: Container for grafana/grafana:8.2.4
-#     docker_container:
-#         name: "grafana"
-#         image: "grafana/grafana:8.2.4"
-#         restart_policy: "always"
-#         volumes:
-#             - "/tmp/grafana.ini:/etc/grafana/grafana.ini"
-#             - "/tmp/dashboards:/var/lib/grafana/dashboards"
-#         network_mode: host
-#         env:
-#             GF_SECURITY_ADMIN_PASSWORD: admin
-#         recreate: yes
+-   name: Container for grafana/grafana:8.2.4
+    docker_container:
+        name: "grafana"
+        image: "grafana/grafana:8.2.4"
+        restart_policy: "always"
+        volumes:
+            - "/tmp/grafana.ini:/etc/grafana/grafana.ini"
+            - "/tmp/dashboards:/var/lib/grafana/dashboards"
+        network_mode: host
+        env:
+            GF_SECURITY_ADMIN_PASSWORD: admin
+        recreate: yes
