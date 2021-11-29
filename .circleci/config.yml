@@ -34,8 +34,9 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - snyk/scan:
-          docker-image-name: $IMAGE_NAME@1.33.1-r6
+          docker-image-name: $IMAGE_NAME
           additional-arguments: "--policy-path=.snyk"
+          fail-on-issues: false
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
