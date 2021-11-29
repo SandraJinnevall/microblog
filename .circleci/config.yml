@@ -107,8 +107,11 @@ jobs:
       - run:
           name: Running test with docker
           command: |
-            docker build -t $IMAGE_NAME:latest2 -f ./docker/Dockerfile_test .
-            docker run $IMAGE_NAME:latest2
+            sudo apt-get install python3-venv
+            python3 -m venv venv
+            . venv/bin/activate
+            make install-test
+            make bandit
 
 
 workflows:
