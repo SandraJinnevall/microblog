@@ -99,11 +99,26 @@ jobs:
           - run: echo "source ~/repo/venv/bin/activate" >> $BASH_ENV # här gör vi så att så att CircleCi automatisk laddar venv och då kollar Snyk vad vi har installerat i den.
           - snyk/scan
 
+  test:
+    executor: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Running test with docker
+          command: |
+            docker build -t $IMAGE_NAME:latest2 -f ./docker/Dockerfile_test .
+
+
 workflows:
   version: 2
   build-master:
     jobs:
       - build:
+          filters:
+            branches:
+              only: master
+      - test:
           filters:
             branches:
               only: master

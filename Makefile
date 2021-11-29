@@ -219,3 +219,8 @@ install-deploy:
 .PHONY: test-docker
 test-docker:
 	docker-compose up test
+
+# target: bandit                   - Run bandit on app
+.PHONY: bandit
+bandit: 
+	bandit -r app
