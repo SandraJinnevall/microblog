@@ -1,6 +1,6 @@
 version: 2.1
 orbs: 
-    snyk: snyk/snyk@1.33.1-r5
+    snyk: snyk/snyk@0.0.8
 executors:
   docker-publisher:
     environment:
@@ -34,7 +34,7 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - snyk/scan:
-          docker-image-name: $IMAGE_NAME
+          docker-image-name: $IMAGE_NAME@1.33.1-r6
           additional-arguments: "--policy-path=.snyk"
       - run:
           name: Publish Docker Image to Docker Hub
