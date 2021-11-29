@@ -1,5 +1,5 @@
 #!/bin/sh
 source venv/bin/activate
-make install-dev
+# make install-dev
 exec make test
 make bandit
