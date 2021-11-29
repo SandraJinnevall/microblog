@@ -108,6 +108,7 @@ jobs:
           name: Running test with docker
           command: |
             docker build -t $IMAGE_NAME:latest2 -f ./docker/Dockerfile_test .
+            docker run $IMAGE_NAME:latest2
 
 
 workflows:
