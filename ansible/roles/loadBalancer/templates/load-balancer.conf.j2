@@ -23,6 +23,12 @@ http {
        listen 443 ssl;
        server_name  saji19.me www.saji19.me;
        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+
+       add_header X-Frame-Options SAMEORIGIN always;
+       add_header "Cache-Control" "max-age=0, no-cache, no-store, must-revalidate";
+       add_header X-Content-Type-Options nosniff;
+       proxy_cookie_path / "/; HTTPOnly; Secure";
+       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
         
        ssl_certificate /etc/letsencrypt/live/saji19.me/cert.pem;
        ssl_certificate_key /etc/letsencrypt/live/saji19.me/privkey.pem;

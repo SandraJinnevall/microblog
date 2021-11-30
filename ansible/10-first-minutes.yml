@@ -1,6 +1,6 @@
 ---
 -   hosts: devops
-    remote_user: azureuser
+    remote_user: deploy
     become: yes
     become_method: sudo
     roles:
